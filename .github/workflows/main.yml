@@ -1,0 +1,28 @@
+name: Update stats
+on:
+  schedule:
+    - cron: '0 20 * * *'
+  workflow_dispatch:
+jobs:
+  getdata:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+    - name: Build data
+      run: |
+        pip3 install requests beautifulsoup4
+        pip3 list
+        python3 --version
+        ps -e
+        python3 tracker.py
+    - name: Commit & Push
+      uses: actions-x/commit@v6
+      with:
+          email: updatebot@iam-py-test.github.io
+          name: Update bot
+          branch: main
+          message: Update stats
