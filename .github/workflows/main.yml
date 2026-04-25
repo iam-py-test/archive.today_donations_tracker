@@ -14,7 +14,7 @@ jobs:
         python-version: '3.x'
     - name: Build data
       run: |
-        pip3 install requests beautifulsoup4
+        pip3 install requests beautifulsoup4 numpy matplotlib
         pip3 list
         python3 --version
         ps -e
